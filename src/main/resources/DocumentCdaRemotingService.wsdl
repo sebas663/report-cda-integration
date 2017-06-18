@@ -1,0 +1,98 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://server.remoting.externalreport.cda.fleni.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="DocumentCdaRemotingServiceService" targetNamespace="http://server.remoting.externalreport.cda.fleni.org/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://server.remoting.externalreport.cda.fleni.org/" elementFormDefault="unqualified" targetNamespace="http://server.remoting.externalreport.cda.fleni.org/" version="1.0">
+<xs:element name="documentCdaCandidates" type="tns:documentCdaCandidates"/>
+<xs:element name="documentCdaInformation" type="tns:documentCdaInformation"/>
+<xs:element name="findDocumentCda" type="tns:findDocumentCda"/>
+<xs:element name="findDocumentCdaResponse" type="tns:findDocumentCdaResponse"/>
+<xs:element name="getLinkImageStudy" type="tns:getLinkImageStudy"/>
+<xs:element name="getLinkImageStudyResponse" type="tns:getLinkImageStudyResponse"/>
+<xs:complexType name="getLinkImageStudy">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLinkImageStudyResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:documentCdaCandidates"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="documentCdaCandidates">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="cdaDocuments" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="code" type="xs:string"/>
+<xs:element minOccurs="0" name="description" type="xs:string"/>
+<xs:element minOccurs="0" name="linkImageStudy" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findDocumentCda">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:documentCdaInformation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="documentCdaInformation">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentId" type="xs:string"/>
+<xs:element minOccurs="0" name="documentName" type="xs:string"/>
+<xs:element minOccurs="0" name="episodeNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="fromDate" type="xs:string"/>
+<xs:element minOccurs="0" name="nhc" type="xs:string"/>
+<xs:element minOccurs="0" name="toDate" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findDocumentCdaResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:documentCdaCandidates"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="findDocumentCda">
+<wsdl:part element="tns:findDocumentCda" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="getLinkImageStudyResponse">
+<wsdl:part element="tns:getLinkImageStudyResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="findDocumentCdaResponse">
+<wsdl:part element="tns:findDocumentCdaResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="getLinkImageStudy">
+<wsdl:part element="tns:getLinkImageStudy" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:portType name="IDocumentCdaRemotingService">
+<wsdl:operation name="getLinkImageStudy">
+<wsdl:input message="tns:getLinkImageStudy" name="getLinkImageStudy"></wsdl:input>
+<wsdl:output message="tns:getLinkImageStudyResponse" name="getLinkImageStudyResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="findDocumentCda">
+<wsdl:input message="tns:findDocumentCda" name="findDocumentCda"></wsdl:input>
+<wsdl:output message="tns:findDocumentCdaResponse" name="findDocumentCdaResponse"></wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="DocumentCdaRemotingServiceServiceSoapBinding" type="tns:IDocumentCdaRemotingService">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="getLinkImageStudy">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getLinkImageStudy">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getLinkImageStudyResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="findDocumentCda">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="findDocumentCda">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="findDocumentCdaResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="DocumentCdaRemotingServiceService">
+<wsdl:port binding="tns:DocumentCdaRemotingServiceServiceSoapBinding" name="DocumentCdaRemotingServicePort">
+<soap:address location="http://172.16.1.152:88/cda-mais-integration/ws/DocumentCdaRemotingService"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
