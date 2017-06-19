@@ -15,14 +15,17 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public class CdaEpicrisisRepository {
+public class CdaContainerRepository implements ICdaContainerRepository {
 	/**
 	 * 
 	 */
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	public List<CdaContainer> findAsll(String table, String where) {
+	/*
+	 * (non-Javadoc)
+	 * @see org.fleni.cda.externalreport.repositories.ICdaContainerRepository#findAllCdaContainerByParams(java.lang.String, java.lang.String)
+	 */
+	public List<CdaContainer> findAllCdaContainerByParams(String table, String where) {
 		List<CdaContainer> l = null;
 		String sql = "select id, externalReportType, reportId, reportDate, reportVersion, " 
 		           + "reportOriginalId, nhc, episodeNumber, typeEpisode, creationDate, "
